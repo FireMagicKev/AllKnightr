@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "860852500526",
+    "project_id": "allknightr-app",
+    "storage_bucket": "allknightr-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860852500526:android:94a6fcdc9e2012a59ec7bf",
+        "android_client_info": {
+          "package_name": "com.example.allknightrapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860852500526-ua3ocjpi0sjdsmib6umtl5vbai2djds8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYtjggsuRQO63cV-H0_ZzJAyyGV_ljFzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860852500526-ua3ocjpi0sjdsmib6umtl5vbai2djds8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
