@@ -1,4 +1,4 @@
-package com.example.allknightrapp.auth
+package com.example.allknightrapp.viewmodels
 
 import android.util.Patterns
 import androidx.compose.runtime.getValue
@@ -6,6 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.allknightrapp.auth.AuthManager
+import com.example.allknightrapp.auth.AuthState
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

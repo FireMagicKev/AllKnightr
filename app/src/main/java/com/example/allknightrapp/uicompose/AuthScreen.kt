@@ -22,14 +22,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.allknightrapp.auth.AuthViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.allknightrapp.R
-import com.example.allknightrapp.auth.AuthState
+import com.example.allknightrapp.viewmodels.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun AuthScreen(authState: AuthState, onLogin: (email: String, password: String) -> Unit) {
+fun AuthScreen(onLogin: (email: String, password: String) -> Unit) {
+    val viewModel = hiltViewModel<AuthViewModel>()
+    var authState = remember{viewModel.authState.value}
     val keyboardController = LocalSoftwareKeyboardController.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -121,5 +122,5 @@ fun AuthScreen(authState: AuthState, onLogin: (email: String, password: String) 
 @Preview
 @Composable
 fun AuthScreenPreview () {
-    AuthScreen(AuthState()) { _, _ -> }
+    AuthScreen() { _, _ -> }
 }

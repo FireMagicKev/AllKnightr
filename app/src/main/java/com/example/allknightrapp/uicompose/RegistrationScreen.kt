@@ -35,16 +35,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.allknightrapp.R
-import com.example.allknightrapp.auth.AuthState
+import com.example.allknightrapp.viewmodels.AuthViewModel
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun RegistrationScreen(
-    authState: AuthState,
-    passwordsMatch: Boolean,
     onRegistration: (email: String, password: String) -> Unit
 ) {
+    val viewModel = hiltViewModel<AuthViewModel>()
+    var authState = remember { viewModel.authState.value }
+    var passwordsMatch = remember { viewModel.passwordsMatch.value }
     val keyboardController = LocalSoftwareKeyboardController.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -61,8 +63,7 @@ fun RegistrationScreen(
         Image(
             painter = painterResource(id = R.mipmap.allknightr_logo), // Your image resource
             contentDescription = "Login Image",
-            modifier = Modifier
-                .size(300.dp) // Adjust size as needed
+            modifier = Modifier.size(300.dp) // Adjust size as needed
         )
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -82,11 +83,9 @@ fun RegistrationScreen(
             keyboardOptions = KeyboardOptions.Default.copy(
                 imeAction = ImeAction.Next
             ),
-            keyboardActions = KeyboardActions(
-                onNext = {
-                    // Focus next input field or perform login action
-                }
-            ),
+            keyboardActions = KeyboardActions(onNext = {
+                // Focus next input field or perform login action
+            }),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 4.dp)
@@ -99,15 +98,12 @@ fun RegistrationScreen(
             onValueChange = { password = it },
             label = { Text(text = "Create Password") },
             keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Done,
-                keyboardType = KeyboardType.Password
+                imeAction = ImeAction.Done, keyboardType = KeyboardType.Password
             ),
-            keyboardActions = KeyboardActions(
-                onDone = {
-                    keyboardController?.hide()
-                    onRegistration(email, password)
-                }
-            ),
+            keyboardActions = KeyboardActions(onDone = {
+                keyboardController?.hide()
+                onRegistration(email, password)
+            }),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 4.dp)
@@ -120,15 +116,12 @@ fun RegistrationScreen(
             onValueChange = { confirmPassword = it },
             label = { Text(text = "Confirm Password") },
             keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Done,
-                keyboardType = KeyboardType.Password
+                imeAction = ImeAction.Done, keyboardType = KeyboardType.Password
             ),
-            keyboardActions = KeyboardActions(
-                onDone = {
-                    keyboardController?.hide()
-                    onRegistration(email, password)
-                }
-            ),
+            keyboardActions = KeyboardActions(onDone = {
+                keyboardController?.hide()
+                onRegistration(email, password)
+            }),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 4.dp)
@@ -147,8 +140,7 @@ fun RegistrationScreen(
         Button(
             onClick = {
                 onRegistration(email, password)
-            },
-            modifier = Modifier.fillMaxWidth()
+            }, modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Create Account")
         }
@@ -165,6 +157,6 @@ fun RegistrationScreen(
 
 @Preview
 @Composable
-fun RegScreenPreview () {
-    RegistrationScreen(AuthState(), true) { _, _ -> }
+fun RegScreenPreview() {
+    RegistrationScreen() { _, _ -> }
 }
